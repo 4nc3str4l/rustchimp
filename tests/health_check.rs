@@ -16,6 +16,7 @@ async fn health_check_works() {
 
 // Launch our application in the background
 fn spawn_app() {
-    let server = rustchimp::run().expect("Failed to bind address");
+    // Port 0 makes the operative system to scan for a free port
+    let server = rustchimp::run("127.0.0.1:0").expect("Failed to bind address");
     let _ = tokio::spawn(server);
 }
