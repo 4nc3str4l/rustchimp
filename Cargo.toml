@@ -2,6 +2,7 @@
 name = "rustchimp"
 version = "0.1.0"
 edition = "2021"
+authors = ['Cristian Muriel <murielmaths@gmail.com>']
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -9,21 +10,13 @@ edition = "2021"
 actix-web = "4"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"]}
 
-# Faster linker on windows if llvm is installed
-[target.x86_64-pc-windows-msvc]
-rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+[dev-dependencies]
+reqwest = "0.11"
 
-[target.x86_64-pc-windows-gnu]
-rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+[lib]
+path = "src/lib.rs"
 
-# On linux
-[target.x86_64-unknown-linux-gnu]
-rustflags = ["-C", "linker=clang", "-C", "link-arg=fuse-ld=lld"]
-
-# OSX
-[target.x86_64-apple-darwin]
-rustflags = ["-C", "link-arg=fuse-ld=/usr/local/bin/zld"]
-
-[target.aarch64-apple-darwin]
-rustflags = ["-C", "link-arg=fuse-ld=/usr/local/bin/zld"]
+[[bin]]
+path = "src/main.rs"
+name = "rustchimp"
 
